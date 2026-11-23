@@ -16,7 +16,13 @@
 클로드에게 이렇게 말하세요.
 > "github.com/gonipro/human-spec 이 스킬 설치하고, 내 사양표 뽑아 줘"
 
-### 이렇게 나와요 (예시, 가상 인물)
+### 이렇게 나와요
+
+![사양표 카드 예시](template/example.png)
+
+카드 모양은 [template/card.html](template/card.html)에서 값만 바꾸면 돼요.
+
+### 표 예시 (가상 인물)
 
 | 부품 | 사양 | 근거 |
 |---|---|---|

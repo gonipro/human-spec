@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>내 인간 사양표</title>
+<style>
+  :root{--win:#f5f5f7;--ink:#1d1d1f;--sub:#6e6e73;--line:#e3e3e8;--accent:#0a84ff}
+  @media (prefers-color-scheme:dark){:root{--win:#2b2b2e;--ink:#f5f5f7;--sub:#a1a1a6;--line:#3a3a3e}}
+  body{margin:0;min-height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,#c7d2fe,#fde68a);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+  .win{width:560px;background:var(--win);color:var(--ink);border-radius:14px;box-shadow:0 30px 60px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.2);overflow:hidden}
+  .bar{height:38px;display:flex;align-items:center;gap:8px;padding:0 14px}
+  .bar i{width:12px;height:12px;border-radius:50%;display:inline-block}
+  .body{display:flex;gap:28px;padding:10px 34px 30px}
+  .pic{width:150px;height:150px;border-radius:32px;flex:none;display:grid;place-items:center;font-size:72px;font-weight:800;color:#fff;background:linear-gradient(135deg,#6366f1,#ec4899)}
+  h1{margin:4px 0 2px;font-size:30px;letter-spacing:-.5px}
+  .model{color:var(--sub);font-size:14px;margin-bottom:14px}
+  .row{display:flex;font-size:13.5px;line-height:1.9}
+  .row b{width:92px;flex:none;text-align:right;padding-right:12px;font-weight:600}
+  .row span{color:var(--ink)}
+  .tabs{margin-top:14px;padding:12px 14px;border-radius:10px;background:rgba(255,59,48,.1);font-size:13.5px}
+  .tabs b{color:#ff3b30}
+  .foot{border-top:1px solid var(--line);padding:12px 34px;font-size:12.5px;color:var(--sub);display:flex;justify-content:space-between}
+  .btn{display:inline-block;margin-top:14px;padding:5px 14px;border-radius:7px;background:var(--line);font-size:13px}
+</style></head><body>
+<div class="win">
+  <div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></div>
+  <div class="body">
+    <div class="pic" id="pic">G</div>
+    <div>
+      <h1 id="name">Gowoon</h1>
+      <div class="model" id="model">Human Pro · 2026년형</div>
+      <div id="rows"></div>
+      <div class="tabs" id="tabs"></div>
+      <div class="btn" id="tip">오늘 닫을 탭: …</div>
+    </div>
+  </div>
+  <div class="foot"><span id="sum"></span><span>human-spec · GoniPro</span></div>
+</div>
+<script>
+/* 데이터만 바꾸면 돼요 */
+const D = window.SPEC || {
+  name: "Gowoon", initial: "G", model: "Human Pro · 2026년형",
+  rows: [
+    ["칩 (CPU)", "결정 속도 최상급 · \"응\" 0.5초"],
+    ["메모리 (램)", "아주 큼 · 하루 일 7개 동시 실행"],
+    ["저장 공간", "대용량 · 2007년부터 쌓인 글"],
+    ["그래픽", "고성능 · 아이디어 계속 출력"],
+    ["센서", "특수 장비 · 한 글자 차이까지 감지"],
+    ["쿨링팬", "저소음 · 잘 안 돎"],
+    ["배터리", "절전 모드 권장"]
+  ],
+  tabs: "열린 탭 <b>280개</b> · 스왑 메모리 과부하",
+  tip: "오늘 닫을 탭: 이번 주 안 해도 되는 일 1개",
+  sum: "사양은 최고급, 탭 정리 필요 ㅋㅋ"
+};
+document.getElementById("name").textContent = D.name;
+document.getElementById("pic").textContent = D.initial || (D.name||"?")[0];
+document.getElementById("model").textContent = D.model;
+document.getElementById("rows").innerHTML = D.rows.map(r => `<div class="row"><b>${r[0]}</b><span>${r[1]}</span></div>`).join("");
+document.getElementById("tabs").innerHTML = D.tabs;
+document.getElementById("tip").textContent = D.tip;
+document.getElementById("sum").textContent = D.sum;
+</script>
+</body></html>
