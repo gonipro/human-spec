@@ -1,1 +1,1 @@
-{ "name": "my-spec", "version": "0.1.0", "description": "내 사양표: 사람을 컴퓨터 사양표로 분석 (Analyze a person like a computer spec sheet)", "author": { "name": "GoniPro", "url": "https://gonipro.app" }, "license": "MIT", "skills": "./skills" }
+{ "name": "human-spec", "version": "0.1.0", "description": "내 인간 사양표: 사람을 컴퓨터 사양표로 분석 (Analyze a person like a computer spec sheet)", "author": { "name": "GoniPro", "url": "https://gonipro.app" }, "license": "MIT", "skills": "./skills" }

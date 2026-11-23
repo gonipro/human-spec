@@ -1,4 +1,4 @@
-# my-spec · 내 사양표
+# human-spec · 내 인간 사양표
 
 > **Analyze a person like a computer spec sheet.** Storage (experience), RAM (how much you juggle), CPU (decision speed), GPU (imagination), battery (stamina), sensors (reading people) — plus your current usage, overheating signs, and 3 ways to free up RAM, because humans can't swap parts. [한국어 안내 ↓](#한국어)
 
@@ -14,7 +14,7 @@
 
 ### 클로드 코드 스킬로 쓰기
 클로드에게 이렇게 말하세요.
-> "github.com/gonipro/my-spec 이 스킬 설치하고, 내 사양표 뽑아 줘"
+> "github.com/gonipro/human-spec 이 스킬 설치하고, 내 사양표 뽑아 줘"
 
 ### 이렇게 나와요 (예시, 가상 인물)
 
