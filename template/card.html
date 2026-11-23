@@ -73,21 +73,30 @@ const D = window.SPEC || {
   tabs: "열린 탭 <b>280개</b> · 스왑 메모리 과부하",
   tip: "오늘 닫을 탭: 이번 주 안 해도 되는 일 1개",
   sum: "사양은 최고급, 탭 정리 필요 ㅋㅋ",
-  battery: "5%", clock: "오전 2:14"
+  battery: "5%", clock: "오전 2:14",
+  state: "overload"   /* overload 과부하 · lowbattery 배터리 부족 · focus 집중 · creative 아이디어 폭발 · calm 여유 */
 };
-{const q=new URLSearchParams(location.search);if(q.get("n")){D.name=q.get("n");D.initial=q.get("n")[0].toUpperCase()}if(q.get("tall")||D.tall)document.body.classList.add("tall")}
-/* 사람마다 다른 배경: 이름으로 색·모양이 정해져요(같은 이름이면 늘 같은 배경) */
+{const q=new URLSearchParams(location.search);if(q.get("n")){D.name=q.get("n");D.initial=q.get("n")[0].toUpperCase()}if(q.get("s"))D.state=q.get("s");if(q.get("tall")||D.tall)document.body.classList.add("tall")}
+/* 배경 = 그 사람 지금 상태(state) + 이름으로 정해지는 모양. 같은 상태라도 사람마다 조금씩 달라요 */
 (function(){
-  const PAL=[["#0f172a","#6366f1","#ec4899","#f59e0b"],["#052e2b","#10b981","#22d3ee","#a3e635"],["#1e1b4b","#a855f7","#f472b6","#fde68a"],["#1a0f0a","#f97316","#ef4444","#fbbf24"],["#0b1324","#38bdf8","#818cf8","#e0f2fe"],["#1f2937","#f43f5e","#fb7185","#fda4af"],["#14120c","#eab308","#84cc16","#fef08a"],["#0c0a1e","#7c3aed","#06b6d4","#f0abfc"],["#101820","#ff8a3d","#ffd23f","#3dd6d0"],["#1b1b1f","#94a3b8","#e2e8f0","#60a5fa"]];
+  const ST={
+    overload:{p:["#1a0806","#ff453a","#ff9f0a","#ffd60a"],m:"tabs",label:"과부하"},
+    lowbattery:{p:["#070b1f","#5e5ce6","#30336b","#cfd8ff"],m:"night",label:"배터리 부족"},
+    focus:{p:["#03161c","#0a84ff","#30d5c8","#9be7ff"],m:"rings",label:"집중"},
+    creative:{p:["#12061f","#bf5af2","#ff375f","#ffd60a"],m:"sparks",label:"아이디어 폭발"},
+    calm:{p:["#0d1a12","#34c759","#a8e063","#f1f8e9"],m:"waves",label:"여유"}
+  };
   let h=2166136261; for(const c of (D.seed||D.name||"?")) h=Math.imul(h^c.codePointAt(0),16777619)>>>0;
   const rnd=()=>{h^=h<<13;h>>>=0;h^=h>>17;h^=h<<5;h>>>=0;return h/4294967296};
-  const p=D.palette||PAL[h%PAL.length]; const W=1440,H=1120;
-  const style=Math.floor(rnd()*3);
-  let g=`<defs><filter id="b"><feGaussianBlur stdDeviation="70"/></filter><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${p[1]}"/><stop offset="1" stop-color="${p[2]}"/></linearGradient></defs><rect width="${W}" height="${H}" fill="${p[0]}"/>`;
-  g+=`<g filter="url(#b)" opacity=".9">`; for(let i=0;i<6;i++){g+=`<circle cx="${rnd()*W}" cy="${rnd()*H}" r="${180+rnd()*260}" fill="${p[1+i%3]}"/>`} g+=`</g>`;
-  if(style===0){for(let i=0;i<7;i++){const y=H*(.15+i*.11)+rnd()*40;g+=`<path d="M0 ${y} C ${W*.3} ${y-120*rnd()}, ${W*.6} ${y+140*rnd()}, ${W} ${y-60}" fill="none" stroke="${p[3]}" stroke-opacity=".18" stroke-width="2"/>`}}
-  if(style===1){for(let i=0;i<40;i++){g+=`<circle cx="${rnd()*W}" cy="${rnd()*H}" r="${1+rnd()*3}" fill="${p[3]}" opacity="${.3+rnd()*.5}"/>`}}
-  if(style===2){for(let i=0;i<5;i++){const x=rnd()*W,y=rnd()*H,r=120+rnd()*220;g+=`<circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="${p[3]}" stroke-opacity=".2" stroke-width="1.5"/>`}}
+  const keys=Object.keys(ST); const st=ST[D.state]||ST[keys[h%keys.length]]; const p=D.palette||st.p; const W=1440,H=1800;
+  let g=`<defs><filter id="b"><feGaussianBlur stdDeviation="80"/></filter></defs><rect width="${W}" height="${H}" fill="${p[0]}"/><g filter="url(#b)" opacity=".85">`;
+  for(let i=0;i<6;i++) g+=`<circle cx="${rnd()*W}" cy="${rnd()*H}" r="${200+rnd()*280}" fill="${p[1+i%3]}"/>`; g+=`</g>`;
+  if(st.m==="tabs"){ for(let i=0;i<26;i++){const w=120+rnd()*160,x=rnd()*W,y=rnd()*H,r=(rnd()-.5)*24;g+=`<g transform="rotate(${r} ${x} ${y})" opacity="${.18+rnd()*.25}"><rect x="${x}" y="${y}" width="${w}" height="${w*.68}" rx="10" fill="none" stroke="${p[3]}" stroke-width="2"/><rect x="${x}" y="${y}" width="${w}" height="16" rx="8" fill="${p[3]}" opacity=".5"/></g>`}
+    for(let i=0;i<5;i++){const y=H*(.2+i*.15);g+=`<path d="M0 ${y} q 60 -30 120 0 t 120 0 t 120 0 t 120 0 t 120 0 t 120 0 t 120 0 t 120 0 t 120 0 t 120 0 t 120 0 t 120 0" fill="none" stroke="${p[2]}" stroke-opacity=".22" stroke-width="3"/>`} }
+  if(st.m==="night"){ g+=`<circle cx="${W*.78}" cy="${H*.16}" r="70" fill="${p[3]}" opacity=".9"/><circle cx="${W*.78+28}" cy="${H*.16-18}" r="62" fill="${p[0]}"/>`; for(let i=0;i<90;i++) g+=`<circle cx="${rnd()*W}" cy="${rnd()*H}" r="${.8+rnd()*2.4}" fill="${p[3]}" opacity="${.3+rnd()*.6}"/>`; }
+  if(st.m==="rings"){ const cx=W*(.3+rnd()*.4),cy=H*(.3+rnd()*.4); for(let i=1;i<12;i++) g+=`<circle cx="${cx}" cy="${cy}" r="${i*90}" fill="none" stroke="${p[3]}" stroke-opacity="${.28-i*.02}" stroke-width="2"/>`; }
+  if(st.m==="sparks"){ for(let i=0;i<34;i++){const x=rnd()*W,y=rnd()*H,r=8+rnd()*26,c=p[1+Math.floor(rnd()*3)];g+=`<path d="M${x} ${y-r} Q${x} ${y} ${x+r} ${y} Q${x} ${y} ${x} ${y+r} Q${x} ${y} ${x-r} ${y} Q${x} ${y} ${x} ${y-r}Z" fill="${c}" opacity="${.5+rnd()*.5}"/>`} }
+  if(st.m==="waves"){ for(let i=0;i<9;i++){const y=H*(.1+i*.1)+rnd()*30;g+=`<path d="M0 ${y} C ${W*.3} ${y-90}, ${W*.6} ${y+90}, ${W} ${y-30}" fill="none" stroke="${p[3]}" stroke-opacity=".2" stroke-width="2.5"/>`} }
   const bg=document.getElementById("bg"); bg.setAttribute("viewBox",`0 0 ${W} ${H}`); bg.innerHTML=g;
   document.getElementById("pic").style.background=`linear-gradient(135deg,${p[1]},${p[2]})`;
 })();
