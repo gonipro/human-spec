@@ -19,7 +19,7 @@
   .tabs b{color:#ff3b30}
   .foot{border-top:1px solid var(--line);padding:12px 34px;font-size:12.5px;color:var(--sub);display:flex;justify-content:space-between}
   /* 세로판(스레드·인스타 피드·댓글용 4:5): ?tall=1 또는 D.tall */
-  body.tall .win{width:620px;zoom:1.42}
+  body.tall{padding:58px 0 128px;box-sizing:border-box}body.tall .win{width:620px;zoom:1.3}
   body.tall .body{flex-direction:column;align-items:center;text-align:center;gap:14px;padding:18px 40px 34px}
   body.tall .pic{width:170px;height:170px;font-size:84px;border-radius:40px}
   body.tall h1{font-size:44px}
@@ -29,9 +29,20 @@
   body.tall .tabs{font-size:21px;margin-top:20px}
   body.tall .btn{font-size:19px;margin-top:16px;padding:8px 16px}
   body.tall .foot{font-size:16px}
+  /* 컴퓨터를 켠 느낌: 위 메뉴 막대 + 아래 독 */
+  .menubar{position:fixed;top:0;left:0;right:0;height:30px;z-index:2;display:flex;align-items:center;gap:18px;padding:0 16px;background:rgba(255,255,255,.28);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);color:#fff;font-size:13.5px;font-weight:500;text-shadow:0 1px 2px rgba(0,0,0,.25)}
+  .menubar b{font-weight:800}.menubar .r{margin-left:auto;display:flex;gap:14px;align-items:center}
+  .bat{display:inline-flex;align-items:center;gap:4px}.bat i{display:inline-block;width:24px;height:11px;border:1.5px solid #fff;border-radius:3px;position:relative}.bat i:after{content:"";position:absolute;left:1px;top:1px;bottom:1px;width:3px;background:#ff453a;border-radius:1px}
+  .dock{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:2;display:flex;gap:10px;padding:9px 12px;border-radius:22px;background:rgba(255,255,255,.25);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+  .dock span{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;box-shadow:inset 0 0 0 .5px rgba(255,255,255,.4)}
+  .dock span.on{position:relative}.dock span.on:after{content:"";position:absolute;bottom:-7px;width:4px;height:4px;border-radius:50%;background:#fff}
+  body.tall .menubar{height:44px;font-size:20px;gap:24px;padding:0 24px}body.tall .bat i{width:34px;height:16px}
+  body.tall .dock{bottom:26px;gap:14px;padding:12px 16px;border-radius:28px}body.tall .dock span{width:70px;height:70px;border-radius:18px}
   .btn{display:inline-block;margin-top:14px;padding:5px 14px;border-radius:7px;background:var(--line);font-size:13px}
 </style></head><body>
 <svg id="bg" preserveAspectRatio="xMidYMid slice"></svg>
+<div class="menubar"><b>Human</b><span>파일</span><span>편집</span><span>보기</span><span>창</span><span class="r"><span class="bat"><span id="batp">5%</span><i></i></span><span id="clock">오전 2:14</span></span></div>
+<div class="dock"><span class="on" style="background:linear-gradient(135deg,#34c759,#30b0c7)"><svg viewBox="0 0 24 24" width="60%" height="60%" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18 3.5 21 8 19.2c1.2.5 2.6.8 4 .8 5 0 9-3.4 9-7.5S17 5 12 5 3 8.4 3 12.5c0 2.1 1 4 2 5.5Z"/></svg></span><span class="on" style="background:linear-gradient(135deg,#5ac8fa,#007aff)"><svg viewBox="0 0 24 24" width="60%" height="60%" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h6l2 2h10v10H3z"/></svg></span><span class="" style="background:linear-gradient(135deg,#ffcc00,#ff9500)"><svg viewBox="0 0 24 24" width="60%" height="60%" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10v18H7zM10 7h4M10 11h4M10 15h2"/></svg></span><span class="on" style="background:linear-gradient(135deg,#3a3a3c,#1c1c1e)"><svg viewBox="0 0 24 24" width="60%" height="60%" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7l5 5-5 5M12 17h7"/></svg></span><span class="" style="background:linear-gradient(135deg,#ff2d55,#af52de)"><svg viewBox="0 0 24 24" width="60%" height="60%" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span><span class="" style="background:linear-gradient(135deg,#8e8e93,#636366)"><svg viewBox="0 0 24 24" width="60%" height="60%" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></span></div>
 <div class="win">
   <div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></div>
   <div class="body">
@@ -61,7 +72,8 @@ const D = window.SPEC || {
   ],
   tabs: "열린 탭 <b>280개</b> · 스왑 메모리 과부하",
   tip: "오늘 닫을 탭: 이번 주 안 해도 되는 일 1개",
-  sum: "사양은 최고급, 탭 정리 필요 ㅋㅋ"
+  sum: "사양은 최고급, 탭 정리 필요 ㅋㅋ",
+  battery: "5%", clock: "오전 2:14"
 };
 {const q=new URLSearchParams(location.search);if(q.get("n")){D.name=q.get("n");D.initial=q.get("n")[0].toUpperCase()}if(q.get("tall")||D.tall)document.body.classList.add("tall")}
 /* 사람마다 다른 배경: 이름으로 색·모양이 정해져요(같은 이름이면 늘 같은 배경) */
@@ -86,5 +98,7 @@ document.getElementById("rows").innerHTML = D.rows.map(r => `<div class="row"><b
 document.getElementById("tabs").innerHTML = D.tabs;
 document.getElementById("tip").textContent = D.tip;
 document.getElementById("sum").textContent = D.sum;
+if (D.battery) document.getElementById("batp").textContent = D.battery;
+if (D.clock) document.getElementById("clock").textContent = D.clock;
 </script>
 </body></html>
