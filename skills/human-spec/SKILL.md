@@ -33,7 +33,8 @@ description: 사람을 컴퓨터 사양표로 분석해 준다. 사용자가 "�
 6. **한 줄 요약:** 웃기게. 예: "사양은 최고급인데 지금 크롬 탭 280개 열어 둔 상태 ㅋㅋ"
 
 ## 사양표 그림 (노트북 "이 컴퓨터에 관하여" 창처럼)
-- 표를 다 쓰면 `template/card.html`의 `D` 값(name·initial·model·rows·tabs·tip·sum)만 그 사람 것으로 바꿔 HTML로 만든다.
+- 표를 다 쓰면 카드 템플릿의 `D` 값(name·initial·model·rows·tabs·tip·sum·state)만 그 사람 것으로 바꿔 HTML로 만든다. 디자인·배경 코드는 그대로 둔다.
+- 템플릿 위치: 이 저장소의 `template/card.html`. 스킬만 설치돼서 파일이 없으면 https://raw.githubusercontent.com/gonipro/human-spec/main/template/card.html 을 받아서 쓴다.
 - 클로드 코드면 파일로 저장하고, 브라우저 자동화가 있으면 PNG로 찍어 준다. 채팅이면 HTML 화면(아티팩트)으로 보여 준다.
 - 사과 로고·운영체제 이름 같은 남의 상표는 넣지 않는다. 창 모양만 비슷하게.
 - 이름은 사용자가 원할 때만. 기본은 이니셜.

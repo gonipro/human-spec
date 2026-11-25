@@ -14,7 +14,7 @@
 
 ### 클로드 코드 스킬로 쓰기
 클로드에게 이렇게 말하세요.
-> "github.com/gonipro/human-spec 이 스킬 설치하고, 내 사양표 뽑아 줘"
+> "github.com/gonipro/human-spec 의 skills/human-spec 을 내 스킬(~/.claude/skills)에 설치하고, 내 사양표를 카드 그림까지 뽑아 줘"
 
 ### 이렇게 나와요
 
